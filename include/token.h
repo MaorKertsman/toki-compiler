@@ -7,7 +7,7 @@ typedef enum TokenType{
 } TokenType;
 
 typedef enum OparetorType{
-    ADD, SUB, MUL, DIV
+    ADD, SUB, MUL, DIV, LEFT, RIGHT
 }OparetorType;
 
 typedef struct token {
@@ -17,6 +17,19 @@ typedef struct token {
 
 int consumeNumber(char** ptr, token* result);
 
-void printTokens(token* tokens, int size);
+void printToken(token token);
+
+int isLeftPar(token token);
+
+int isRightPar(token token);
+
+int isMul(token token);
+
+int isDiv(token token);
+
+int isAdd(token token);
+
+int isSub(token token);
+
 
 #endif
