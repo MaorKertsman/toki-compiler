@@ -137,6 +137,7 @@ int evaluateWithoutPars(tNode* tokens, int from, int to){
 
 int evaluate(tNode* tokens){
     int deepRight, deepLeft;
+    
 
     while(findDeepestPars(tokens, &deepRight, &deepLeft)){
         evaluateWithoutPars(tokens, deepLeft, deepRight);
@@ -152,8 +153,16 @@ int evaluate(tNode* tokens){
 
 
 int main(){
+    char prefix[] = "0 + ";
     char st[100];    
     fgets(st, 100, stdin);
+
+    size_t len_prefix = strlen(prefix);
+    size_t len_str = strlen(st);
+
+    memmove(st + len_prefix, st, len_str + 1); 
+    memcpy(st, prefix, len_prefix);
+
     tNode* tokens;
 
     tokenizeExpression(st, &tokens);
@@ -162,7 +171,6 @@ int main(){
     int firstRight, lastLeft;
 
     evaluate(tokens);
-
 }
 
 
